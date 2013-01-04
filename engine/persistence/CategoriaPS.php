@@ -56,7 +56,7 @@ class CategoriaPS extends Persistence {
 		
 		$this->connect();
 		
-		$sql = "select id, titulo, usuario_id, ativo from categoria";
+		$sql = "select id, titulo, usuario_id, ativo from categoria where id = " . $id;
 		$result = pg_query($sql) or die("Query failed: " . pg_last_error());
 		
 		if(pg_num_rows($result) > 0) {

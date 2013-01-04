@@ -14,6 +14,10 @@ class LoginCO extends Control {
 				$this->entrar();
 				break;
 			}
+			case "sair" : {
+				$this->sair();
+				break;
+			}
 			case "cancelar" : {
 				$_SESSION["msg"] = "";
 				header("Location: ../../admin/login.php");
@@ -44,6 +48,19 @@ class LoginCO extends Control {
 		else {
 			$_SESSION['msg'] = "Usuário ou Senha inválidos!";
 			
+			header("Location: ../../admin/login.php");
+		}
+	}
+	
+	/**
+	 * Método para sair do sistema.
+	 */
+	function sair() {
+		$isDestroyed = session_destroy();
+		session_start();
+		if( $isDestroyed ) {
+			$_SESSION['msg'] = "Você saiu do sistema com sucesso.";
+	
 			header("Location: ../../admin/login.php");
 		}
 	}

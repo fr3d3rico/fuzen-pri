@@ -8,26 +8,7 @@ require("../engine/bean/Usuario.php");
 
   <body>
 
-    <div class="navbar navbar-inverse navbar-fixed-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="#">Área Administrativa</a>
-          <div class="nav-collapse collapse">
-            <p class="navbar-text pull-right">
-              <?php
-              $usuario = unserialize($_SESSION["usuario_sessao"]);
-              echo($usuario->usuario); 
-              ?>
-            </p>
-          </div><!--/.nav-collapse -->
-        </div>
-      </div>
-    </div>
+    <?php include("barraTitulo.php");?>
 
     <div class="container-fluid">
       <div class="row-fluid">

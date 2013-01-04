@@ -13,6 +13,8 @@ class CategoriaCO extends Control {
 	 * Método construtor.
 	 */
 	function __construct() {
+		parent::__construct();
+		
 		$message = new Messages();
 		
 		$option = $_REQUEST["option"];
