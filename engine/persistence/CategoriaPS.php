@@ -99,8 +99,10 @@ class CategoriaPS extends Persistence {
 	}
 	
 	function remover($id) {
-		$sql = "delete from categoria where id = " . $id;
-		pg_query($sql) or die("Query failed: " . pg_last_error());
+		if( $id != null && strlen($id) > 0 ) {
+			$sql = "delete from categoria where id = " . $id;
+			pg_query($sql) or die("Query failed: " . pg_last_error());
+		}
 	}
 }
 ?>
