@@ -3,7 +3,13 @@ class Persistence {
 	
 	private $dbconn;
 	
+	function __construct() {
+		$this->connect();
+	}
+	
 	function __destruct() {
+		$this->closeConnection();
+	
 		//Close Conect
 		if( is_resource($this->dbconn) ) {
 			pg_close($this->dbconn);

@@ -3,10 +3,16 @@ require("Persistence.php");
 
 class CategoriaPS extends Persistence {
 	
+	function __construct() {
+		parent::__construct();
+	}
+	
+	function __destruct() {
+		parent::__destruct();
+	}
+	
 	function cadastrar($categoria) {
 		$isCadastrado = true;
-		
-		$this->connect();
 		
 		$labels = "";
 		$values = "";
@@ -31,30 +37,22 @@ class CategoriaPS extends Persistence {
 		
 		$result = pg_query($sql) or die("Query failed: " . pg_last_error());
 		
-		$this->closeConnection();
-		
 		return $isCadastrado;
 	}
 	
 	function alterar($categoria) {
 		$isAlterado = true;
 	
-		$this->connect();
-	
 		$sql = "update categoria set titulo = '". $categoria->titulo ."', ativo = ". $categoria->ativo .", usuario_id = ". $categoria->usuario_id ." where id = ". $categoria->id;
 		
 	
 		$result = pg_query($sql) or die("Query failed: " . pg_last_error());
-	
-		$this->closeConnection();
 	
 		return $isAlterado;
 	}
 	
 	function consultarCategoria($id) {
 		$categoria = null;
-		
-		$this->connect();
 		
 		$sql = "select id, titulo, usuario_id, ativo from categoria where id = " . $id;
 		$result = pg_query($sql) or die("Query failed: " . pg_last_error());
@@ -72,15 +70,11 @@ class CategoriaPS extends Persistence {
 			}
 		}
 		
-		$this->closeConnection();
-		
 		return $categoria;
 	}
 	
 	function consultar() {
 		$listaCategoria = null;
-		
-		$this->connect();
 		
 		$sql = "select id, titulo, usuario_id, ativo from categoria order by titulo";
 		$result = pg_query($sql) or die("Query failed: " . pg_last_error());
@@ -101,19 +95,12 @@ class CategoriaPS extends Persistence {
 			}
 		}
 		
-		$this->closeConnection();
-		
 		return $listaCategoria;
 	}
 	
 	function remover($id) {
-	
-		$this->connect();
-	
 		$sql = "delete from categoria where id = " . $id;
 		pg_query($sql) or die("Query failed: " . pg_last_error());
-
-		$this->closeConnection();
 	}
 }
 ?>

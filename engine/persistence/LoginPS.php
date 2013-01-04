@@ -4,10 +4,16 @@ require("../bean/Usuario.php");
 
 class LoginPS extends Persistence {
 	
+	function __construct() {
+		parent::__construct();
+	}
+	
+	function __destruct() {
+		parent::__destruct();
+	}
+	
 	function autenticarUsuario($usuario, $senha) {
 		$autenticado = false;
-		
-		$this->connect();
 		
 		$sql = "select usuario from usuario where usuario = '" . $usuario . "' and senha = '". $senha . "'";
 		$result = pg_query($sql) or die("Query failed: " . pg_last_error());
@@ -21,15 +27,11 @@ class LoginPS extends Persistence {
 			}
 		}
 		
-		$this->closeConnection();
-		
 		return $autenticado;
 	}
 	
 	function consultarUsuario($usuario, $senha) {
 		$usu = null;
-		
-		$this->connect();
 		
 		$sql = "select id, usuario, senha, ativo from usuario where usuario = '" . $usuario . "' and senha = '". $senha . "'";
 		$result = pg_query($sql) or die("Query failed: " . pg_last_error());
@@ -48,8 +50,6 @@ class LoginPS extends Persistence {
 				break;
 			}
 		}
-		
-		$this->closeConnection();
 		
 		return $usu;
 	}
