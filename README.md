@@ -1,4 +1,4 @@
-fuzen-priscilla
+fuzen-pri
 ===============
 
 Simple Php architecture to MVC + Bootstrap. Created by: Fred @web4u Sponsor: Füzen Ideas (http://www.fuzenideas.com)
